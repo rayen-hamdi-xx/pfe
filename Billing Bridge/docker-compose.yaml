@@ -1,0 +1,40 @@
+# This is a Docker Compose file for setting up services.
+
+services:
+
+  keycloak:
+    build:
+      context: ./keycloak  # Build the Keycloak image from the Dockerfile in the current directory
+      dockerfile: Dockerfile  # Explicitly specify the Dockerfile
+    container_name: keycloak
+    restart: always
+    depends_on:
+      - postgres  # Ensure that PostgreSQL is started before Keycloak
+    volumes:
+      - ./realm_config.json:/opt/jboss/keycloak/realm-config/realm_config.json  # Ensure the realm file is copied into the container
+    networks:
+      - billing-bridge
+    ports:
+      - "8080:8080"
+
+  postgres:
+    image: postgres:latest  # Define the PostgreSQL service
+    container_name: postgres
+    environment:
+      - POSTGRES_DB=keycloak
+      - POSTGRES_USER=keycloak
+      - POSTGRES_PASSWORD=keycloak
+    networks:
+      - billing-bridge
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+networks:
+  billing-bridge:
+    driver: bridge
+
+volumes:
+  postgres-data:
+    driver: local

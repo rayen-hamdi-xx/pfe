@@ -1,0 +1,23 @@
+-minikube start --driver=docker =>start a local cluster with a specified hypervisor
+
+-minkube status => status
+
+-minikube ip => see node ip 
+
+-minikube ssh => connect to the node
+
+-kubectl get nodes => see nodes of the cluster
+
+-kubectl get namespaces => see namespaces (groups of pods)
+
+-kubectl get pods [--namespace=kube-system] => see pods (you can specify namespace)
+
+-kubectl run pod --image=nginx = run a container nginx in a pod
+
+-kubectl describe pod nginx => nginx pod infos
+
+-docker ps | grep <container_name> => show details of container
+
+-docker exec -it <id> sh => connect to container
+
+-kubectl get pods -o wide => more details such as pod's ip adress

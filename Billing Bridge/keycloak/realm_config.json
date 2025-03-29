@@ -1,0 +1,38 @@
+{
+    "id": "billingRealm",
+  "realm": "billingRealm",
+  "enabled": true,
+  "clients": [
+    {
+      "clientId": "angular-client",
+      "publicClient": true,
+      "redirectUris": [],
+      "webOrigins": ["*"],
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": false
+    },
+    {
+      "clientId": "express-api",
+      "secret": "your-secret-key",
+      "confidential": true,
+      "serviceAccountsEnabled": true,
+      "standardFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "bearerOnly": true
+    }
+  ],
+  "users": [
+    {
+      "username": "admin",
+      "enabled": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "admin"
+        }
+      ]
+    }
+  ]
+
+}

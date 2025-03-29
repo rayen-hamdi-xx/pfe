@@ -1,0 +1,32 @@
+acteurs principale : 
+
+admin saas
+-------------------
+- consulter l'usage des clients pour durée selecionnez
+- consulter la frequences des paiement et le performances generale
+- consulter l'historique de chaque client
+
+client :
+-------------------
+-consulter l'historique des factures
+-creer un facture
+-telecharger facture 
+-consulter historique des consomations
+-consulter historique des paiements
+-payer une facture
+-active mode paiements automatique
+-s'authentifier 
+
+systeme sns:
+-------------------
+-notifier le client si une facture est disponible
+
+acteurs secondaire :
+keycloakc oicd :
+--------------------
+-authenifier l'utilisateur
+
+service payment paypal stripe
+-------------------------------
+-confirmer la paiements 
+
