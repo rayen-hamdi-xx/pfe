@@ -1,21 +1,18 @@
-# pull the latest keycloak image
-FROM jboss/keycloak:latest
+# Pull the latest Keycloak image from quay.io
+FROM quay.io/keycloak/keycloak:latest
 
-# copy the realm file to the keycloak folder
-COPY realm_config.json /opt/jboss/keycloak/realm-config/
+# Copy the realm file to the Keycloak folder inside the container
+COPY ./realm_config.json /opt/keycloak/data/import/
 
-# setup the environment variables
-ENV KEYCLOAK_IMPORT=/opt/jboss/keycloak/realm-config/realm_config.json
-ENV KEYCLOAK_USER=admin
-ENV KEYCLOAK_PASSWORD=admin
-ENV DB_VENDOR=postgres
-ENV DB_ADDR=postgres
-ENV DB_PORT=5432
-ENV DB_DATABASE=keycloak
-ENV DB_USER=keycloak
-ENV DB_PASSWORD=keycloak
+# Set up the environment variables for Keycloak
+ENV  KEYCLOAK_ADMIN=admin
+ENV  KEYCLOAK_ADMIN_PASSWORD=admin
+ENV  DB_URL=jdbc:postgresql://postgres:5432/keycloak?ssl=allow 
+ENV  DB=keycloak
+ENV  DB_USERNAME=keycloak
+ENV  DB_PASSWORD=keycloak
 
 EXPOSE 8080
 
-# run keycloak with the imported realm file
-ENTRYPOINT ["./bin/kc.sh", "start", "--import-realm"]
+# Run Keycloak with the imported realm file (adjusted path to kc.sh)
+ENTRYPOINT ["/opt/keycloak/bin/kc.sh", "start-dev", "--import-realm"]
