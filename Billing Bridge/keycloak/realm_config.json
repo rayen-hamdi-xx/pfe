@@ -2,20 +2,37 @@
     "id": "billingRealm",
   "realm": "billingRealm",
   "enabled": true,
+  "roles" : {
+    "client": {
+      "angular-client": [
+        {
+          "name": "admin",
+          "description": "Can view all content"
+        },
+        {
+          "name": "client",
+          "description": "Can only view his content"
+        }
+        ]
+      }
+    },
   "clients": [
     {
       "clientId": "angular-client",
       "publicClient": true,
-      "redirectUris": [],
+      "redirectUris": ["http://localhost:4200/auth/callback"],
       "webOrigins": ["*"],
+      "clientAuthenticatorType": "client-jwt",
       "standardFlowEnabled": true,
-      "implicitFlowEnabled": false,
+       "protocol": "openid-connect",
+      "implicitFlowEnabled": false, 
       "directAccessGrantsEnabled": false
     },
     {
       "clientId": "express-api",
       "secret": "your-secret-key",
       "publicClient": false,
+       "protocol": "openid-connect",
       "serviceAccountsEnabled": true,
       "standardFlowEnabled": false,
       "directAccessGrantsEnabled": false,
