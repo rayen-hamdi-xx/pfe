@@ -1,0 +1,1 @@
+// verifies user is authenticated

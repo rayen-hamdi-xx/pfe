@@ -1,10 +1,10 @@
 {
-    "id": "billingRealm",
-  "realm": "billingRealm",
+    "id": "Billing-Bridge",
+  "realm": "Billing-Bridge",
   "enabled": true,
+  "loginTheme": "keycloak",
   "roles" : {
-    "client": {
-      "angular-client": [
+      "realm": [
         {
           "name": "admin",
           "description": "Can view all content"
@@ -14,39 +14,50 @@
           "description": "Can only view his content"
         }
         ]
-      }
-    },
+  },
   "clients": [
     {
-      "clientId": "angular-client",
+      "clientId": "billing-client",
       "publicClient": true,
+      "rootUrl": "http://localhost:4200",
       "redirectUris": ["http://localhost:4200/auth/callback"],
       "webOrigins": ["*"],
-      "clientAuthenticatorType": "client-jwt",
       "standardFlowEnabled": true,
        "protocol": "openid-connect",
       "implicitFlowEnabled": false, 
       "directAccessGrantsEnabled": false
     },
     {
-      "clientId": "express-api",
-      "secret": "your-secret-key",
+      "clientId": "billing-api",
+      "secret": "secretkey",
       "publicClient": false,
        "protocol": "openid-connect",
       "serviceAccountsEnabled": true,
       "standardFlowEnabled": false,
       "directAccessGrantsEnabled": false,
       "bearerOnly": true
+    },
+    {   
+      "clientId": "token-exchange-client",
+      "secret": "secretkey",
+      "publicClient": false,
+      "protocol": "openid-connect",
+      "serviceAccountsEnabled": false,
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "bearerOnly": false,
+      "rootUrl": "http://localhost:5000"
     }
   ],
   "users": [
     {
-      "username": "admin",
+      "username": "badmin",
       "enabled": true,
       "credentials": [
         {
           "type": "password",
-          "value": "admin"
+          "value": "123456789"
         }
       ]
     }

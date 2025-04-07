@@ -1,0 +1,1 @@
+// verifies that the request is from a valid AWS SNS source
